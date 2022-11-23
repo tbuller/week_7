@@ -1,9 +1,9 @@
-const Model = require('./todoModel');
-const View = require('./todoView');
+const Model = require("./todoModel");
+const View = require("./todoView");
 
-model = new Model;
-view = new View(model);
-model.addNote('This is an example');
+const model = new Model();
+model.addNote('This is an example note');
+
+const view = new View(model);
+
 view.displayNotes();
-
-console.log('The notes app is running');

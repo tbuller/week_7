@@ -1,14 +1,30 @@
 class MessageView {
   constructor() {
     this.buttonEl = document.querySelector('#show-message-button');
+    this.hideButtonEl = document.querySelector('#hide-message-button');
+    //this.mainContainerEl = document.querySelector('#main-container');
 
     this.buttonEl.addEventListener('click', () => {
-       this.displayMessage();
+      this.displayMessage();
+    });
+
+    this.hideButtonEl.addEventListener('click', () => {
+      this.hideMessage();
     });
   }
 
   displayMessage() {
-    console.log('Thanks for clicking me!');
+    const message = document.querySelector('#message-input').value;
+
+    const messageEl = document.createElement('div');
+    messageEl.id = 'message';
+    messageEl.innerText = message; 
+
+    document.querySelector('#main-container').append(messageEl);
+  }
+
+  hideMessage() {
+    document.querySelector('#message').remove();
   }
 }
 

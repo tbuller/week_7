@@ -3,17 +3,32 @@ class View {
   constructor(model) {
     this.model = model;
     this.mainContainerEl = document.querySelector('#main-container');
+
+    document.querySelector('#add-note-button').addEventListener('click', () => {
+      const newNote = document.querySelector('#add-note').value;
+      this.addNewNote(newNote);
+      document.querySelector('#add-note').value = "";
+    });
+  }
+
+  addNewNote(note) {
+    this.model.addNote(note);
+    this.displayNotes();
   }
 
   displayNotes() {
-    const notes = this.model.getNotes();
 
-    notes.forEach(note => {
-      const noteEl = document.createElement('div');
-      noteEl.textContent = note;
-      noteEl.className = 'note';
-      this.mainContainerEl.append(noteEl); 
+    document.querySelectorAll('.note').forEach(element => {
+      element.remove();
     })
+
+    this.model.getNotes().forEach(note => {
+      const noteEl = document.createElement('div');
+      noteEl.className = 'note';
+      noteEl.textContent = note;
+      this.mainContainerEl.append(noteEl);
+    })
+    
   }
 }
 
